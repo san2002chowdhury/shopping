@@ -1,50 +1,56 @@
 import { trim } from "lodash";
-import { Schema,model } from "mongoose";
-const ProductSchema=new Schema({
-    title:{
-        type:String,
-        required:true,
-        trim:true,
+import { Schema, model } from "mongoose";
+const ProductSchema = new Schema(
+  {
+    title: {
+      type: String,
+      required: true,
+      trim: true,
     },
-    slug:{
-        type:String,
+    slug: {
+      type: String,
     },
-    product_image:{
-        type: String
+    product_image: {
+      type: String,
     },
-    productBulk_image:{
-        type: Array
+    productBulk_image: {
+      type: Array,
     },
-    summary:{
-        type:String,
-        required:true,
+    summary: {
+      type: String,
+      required: true,
+    },
+    description: {
+      type: String,
+      required: true,
+    },
+    price: {
+      type: Number,
+      default: 0,
+    },
+    discount_price: {
+      type: Number,
+      default: 0,
+    },
 
+    discount_type: {
+      type: String,
     },
-    description:{
-        type:String,
-        required:true,
-
+    discount_value: {
+      type: String,
     },
-    price:{
-        type:Number,
-        default:0
+    tags: {
+      type: [String],
     },
-    discount_type:{
-        type:String,
+    user_id: {
+      type: Schema.Types.ObjectId,
+      ref: "users",
     },
-    discount_value:{
-        type:String,
+    cat_id: {
+      type: Schema.Types.ObjectId,
+      ref: "categories",
     },
-    tags:{
-        type:[String],
-    },
-    user_id:{
-        type:Schema.Types.ObjectId,
-        ref:'users',
-    },
-    cat_id:{
-        type:Schema.Types.ObjectId,
-        ref:'categories',
-    },
-},{timestamps:true});
-export const ProductModel=model('product',ProductSchema);
+  },
+  { timestamps: true }
+);
+export const ProductModel = model("product", ProductSchema);
